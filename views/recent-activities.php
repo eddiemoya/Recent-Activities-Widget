@@ -1,3 +1,10 @@
+<section class="span12">
+    <section class="content-container recent-activity">
+    
+      <hgroup class="content-header"><h3><?php echo $recent_act_title;?></h3></hgroup>
+      
+      <ol class="content-body result clearfix">
+
 <?php 
 
 $activities_text = array('question' 	=> 'Asked this: ',
@@ -19,16 +26,11 @@ foreach($activities as $activity):
 
 
 ?>
-<section class="span4">
-    <section class="content-container recent-activity">
-    
-      <hgroup class="content-header"><h3><?php echo $recent_act_title;?></h3></hgroup>
-      
-      <ol class="content-body result clearfix">
+
         
         <li class="clearfix">
-          <?php get_partial( 'parts/crest', array( "user_id" => $activity->author, "width" => '', "titling" => true, "show_name" => false ) ); ?>
-          <div class="span9">
+          <?php get_partial( 'parts/crest', array( "user_id" => $activity->author, "width" => 'span4' ) ); ?>
+          <div class="span8">
             <h3>
                <span><?php echo $activity_text; ?></span>
 	              <time class="content-date" datetime="<?php echo date( "Y-m-d", strtotime($activity->date)); ?>" pubdate="pubdate"><?php echo date( "F j, Y g:ia", strtotime($activity->date)); ?></time>

@@ -81,7 +81,9 @@ class Recent_Activities_Widget extends WP_Widget {
         extract($instance);
         
        
-       include (get_template_url . '/classes/communities_profile.php');
+       
+      // include (get_template_directory_url() . '/classes/communities_profile.php');
+      get_template_part('classes/communities_profile');
        
        $category = (! empty($recent_act_cats)) ? $recent_act_cats : null;
         
@@ -91,8 +93,9 @@ class Recent_Activities_Widget extends WP_Widget {
        						->category($category)
         					->get_all_activities()
         				    ->activities;
-        						
-        include ('views/recent_activites.php');						
+
+        
+        include ('views/recent-activities.php');						
         
     }
     
