@@ -295,7 +295,8 @@ class Recent_Activities_Widget extends WP_Widget {
                 <?php break;
             
             case 'select': ?>
-                    
+            
+                    <label for="<?php echo $this->get_field_id( $field_id ); ?>"><?php echo $label; ?>: </label>
                     <select id="<?php echo $this->get_field_id( $field_id ); ?>" class="widefat" name="<?php echo $this->get_field_name($field_id); ?>">
                         <?php
                             foreach ( $options as $value => $label ) :  ?>
