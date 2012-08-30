@@ -40,7 +40,7 @@ foreach($activities as $activity):
 	            <?php echo (in_array($activity->type, $recent->comment_types)) ? $excerpt : null; ?>
 	          </div>
 	        </li>
-        <? endforeach; ?>
+        <?php endforeach; ?>
       </ol>
     </section>
   </section>
