@@ -77,13 +77,13 @@ class Recent_Activities_Widget extends WP_Widget {
      */
     public function widget( $args, $instance ){
     	
+    	ob_start();
+    	
         extract($args);
         extract($instance);
         
-       
-       
-      // include (get_template_directory_url() . '/classes/communities_profile.php');
-      get_template_part('classes/communities_profile');
+     	 // include (get_template_directory_url() . '/classes/communities_profile.php');
+       get_template_part('classes/communities_profile');
        
        $category = (! empty($recent_act_cats)) ? $recent_act_cats : null;
         
@@ -95,7 +95,11 @@ class Recent_Activities_Widget extends WP_Widget {
         				    ->activities;
 
         
-        include ('views/recent-activities.php');						
+        include ('views/recent-activities.php');	
+
+        $output = ob_get_clean();
+        
+        echo $output;
         
     }
     
