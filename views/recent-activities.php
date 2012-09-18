@@ -7,6 +7,7 @@
 
 <?php 
 
+<<<<<<< Updated upstream
 $activities_text = array('question' 	=> 'Asked this: ',
 							'answer'	=> 'Answered this: ',
 							''			=> 'Commented this: ',
@@ -16,6 +17,22 @@ $activities_text = array('question' 	=> 'Asked this: ',
 							
 $action_text = array('follow' => 'Followed this: ',
 					 'upvote' => 'Liked this: ');
+=======
+	
+    $activities_text = array(
+        'question' => 'Asked this: ',
+        'answer'   => 'Answered this: ',
+        ''         => 'Commented this: ',
+        'comment'  => 'Commented this: ',
+        'post'     => 'Posted this: ',
+        'guide'    => 'Posted this: '
+    );
+
+    $action_text = array(
+        'follow' => 'Followed this: ',
+        'upvote' => 'Liked this: '
+    );
+>>>>>>> Stashed changes
 
 foreach($activities as $activity):
 
@@ -27,6 +44,7 @@ foreach($activities as $activity):
 
 ?>
 
+<<<<<<< Updated upstream
         
         <li class="clearfix">
           <?php get_partial( 'parts/crest', array( "user_id" => $activity->author, "width" => 'span4' ) ); ?>
@@ -42,5 +60,24 @@ foreach($activities as $activity):
 	        </li>
         <?php endforeach; ?>
       </ol>
+=======
+            <li class="clearfix">
+                <?php get_partial( 'parts/crest', array( "user_id" => $activity->author, "width" => 'span4' ) ); ?>
+                <div class="span8">
+                    <h3>
+                        <span><?php echo $activity_text; ?></span>
+                        <?php get_partial( 'parts/space_date_time', $time_options ); ?>
+                        <a href="<?php echo (in_array($activity->type, $recent->comment_types)) ? ((count($activity->post->category)) ? get_term_link($activity->post->category[0]) : null) : ((count($activity->category)) ? get_term_link($activity->category[0]) : null) ;?>" class="category"><?php echo (in_array($activity->type, $recent->comment_types)) ? ((count($activity->post->category)) ? $activity->post->category[0]->cat_name : 'Uncategorized') : ((count($activity->category)) ? $activity->category[0]->cat_name : 'Uncategorized') ;?></a>
+                        <a href="<?php echo (in_array($activity->type, $recent->comment_types)) ? get_permalink($activity->post->ID) : get_permalink($activity->ID) ;?>"><?php echo (in_array($activity->type, $recent->comment_types)) ? sanitize_text($activity->post->post_title) : sanitize_text($activity->title);?></a>
+                    </h3>
+                    <?php echo (in_array($activity->type, $recent->comment_types)) ? sanitize_text($excerpt) : null; ?>
+                </div>
+            </li>
+
+<?php
+    endforeach; 
+?>
+        </ol>
+>>>>>>> Stashed changes
     </section>
   </section>
