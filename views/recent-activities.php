@@ -52,6 +52,7 @@ $action_text = array('follow' => 'Followed this: ',
 <?php
     endforeach; 
 ?>
+
         </ol>
 
     </section>
