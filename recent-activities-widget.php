@@ -93,8 +93,8 @@ class Recent_Activities_Widget extends WP_Widget {
        						->category($category)
         					->get_all_activities()
         				    ->activities;
-
-        
+		
+        				    
         include ('views/recent-activities.php');	
 
         $output = ob_get_clean();
