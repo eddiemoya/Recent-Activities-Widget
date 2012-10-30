@@ -65,10 +65,7 @@
 								</li>
 								<li class="recent-activity_title"><a href="<?php echo (in_array($activity->type, $recent->comment_types) || $activity->type == '') ? get_permalink($activity->post->ID) : get_permalink($activity->ID) ;?>"><?php echo (in_array($activity->type, $recent->comment_types) || $activity->type == '') ? (($is_reply) ? '"' . $parent_excerpt . '"' : truncated_text(sanitize_text($activity->post->post_title))) : truncated_text(sanitize_text($activity->title));?></a></li>
 								<?php if (in_array($activity->type, $recent->comment_types) || $activity->type == '') {echo $excerpt;} ?>
-								<li class="recent-activity_category-time">
-									<?php get_partial( 'parts/space_date_time', $time_options ); ?>
-									<a href="<?php echo (in_array($activity->type, $recent->comment_types)) ? ((count($activity->post->category)) ? get_term_link($activity->post->category[0]) : null) : ((count($activity->category)) ? get_term_link($activity->category[0]) : null) ;?>" class="category"><?php echo (in_array($activity->type, $recent->comment_types)) ? ((count($activity->post->category)) ? $activity->post->category[0]->cat_name : 'Uncategorized') : ((count($activity->category)) ? $activity->category[0]->cat_name : 'Uncategorized') ;?></a>
-								</li>
+								
 							</ul>
 						</div>
 					</li>
