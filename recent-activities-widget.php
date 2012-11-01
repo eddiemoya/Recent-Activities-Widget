@@ -93,7 +93,6 @@ class Recent_Activities_Widget extends WP_Widget {
        						->category($category)
         					->get_all_activities()
         				    ->activities;
-		
         				    
         include ('views/recent-activities.php');	
 
@@ -141,7 +140,13 @@ class Recent_Activities_Widget extends WP_Widget {
             if($value == 'on' && !isset($new_instance[$key])){
                 unset($instance[$key]);
             }
-
+            
+        }
+        
+        //Default truncation to 80 chars if left blank
+        if((isset($instance['recent_trunc_chars']) && ! count(trim($instance['recent_trunc_chars']))) || (! isset($instance['recent_trunc_chars']))) {
+        	
+        	$instance['recent_trunc_chars'] = 80;
         }
         
         return $instance;
@@ -205,6 +210,11 @@ class Recent_Activities_Widget extends WP_Widget {
                 	'type' => 'select',
                 	'label' => 'Show categories',
                		'options' => $category_terms
+            ),
+            
+            array('field_id' => 'recent_trunc_chars',
+            	  'type'	=> 'text',
+				   'label'	=> 'Truncate at (chars)'
             )
         );
 

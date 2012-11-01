@@ -31,7 +31,7 @@
     		$is_reply = true;
     		$act_type_text = ($activity->comment_parent_author[0]->comment_type == 'answer') ? 'answer' : 'comment';
     		$act_text = return_screenname_link($activity->author) . ' Replied to  ' . return_screenname_link($activity->comment_parent_author[0]->user_id) .'\'s ' . $act_type_text . ':';
-    		$parent_excerpt = strlen($activity->comment_parent_author[0]->comment_content) > 200 ? substr( truncated_text(sanitize_text($activity->comment_parent_author[0]->comment_content)), 0, 200 ) . "&#8230;" : truncated_text(sanitize_text($activity->comment_parent_author[0]->comment_content));
+    		$parent_excerpt = strlen($activity->comment_parent_author[0]->comment_content) > 200 ? truncated_text(sanitize_text($activity->comment_parent_author[0]->comment_content), $recent_trunc_chars) : truncated_text(sanitize_text($activity->comment_parent_author[0]->comment_content), $recent_trunc_chars);
     		
     		
     	} else {
@@ -42,7 +42,7 @@
     	}
         	
 
-        $excerpt = '<li class="recent-activity_excerpt">' . ( strlen( $activity->content ) > 200 ? substr( truncated_text(sanitize_text($activity->content)), 0, 200 ) . "&#8230;" : truncated_text(sanitize_text($activity->content))) . '</li>';
+        $excerpt = '<li class="recent-activity_excerpt">' . ( strlen( $activity->content ) > $recent_trunc_chars ? truncated_text(sanitize_text($activity->content), $recent_trunc_chars) : truncated_text(sanitize_text($activity->content), $recent_trunc_chars)) . '</li>';
 
         $time_options = array(
             "timestamp"   => strtotime( $activity->date ),
@@ -63,7 +63,7 @@
 									<?php get_partial( 'parts/space_date_time', $time_options ); ?>
 									<a href="<?php echo (in_array($activity->type, $recent->comment_types)) ? ((count($activity->post->category)) ? get_term_link($activity->post->category[0]) : null) : ((count($activity->category)) ? get_term_link($activity->category[0]) : null) ;?>" class="category"><?php echo (in_array($activity->type, $recent->comment_types)) ? ((count($activity->post->category)) ? $activity->post->category[0]->cat_name : 'Uncategorized') : ((count($activity->category)) ? $activity->category[0]->cat_name : 'Uncategorized') ;?></a>
 								</li>
-								<li class="recent-activity_title"><a href="<?php echo (in_array($activity->type, $recent->comment_types) || $activity->type == '') ? get_permalink($activity->post->ID) : get_permalink($activity->ID) ;?>"><?php echo (in_array($activity->type, $recent->comment_types) || $activity->type == '') ? (($is_reply) ? '"' . $parent_excerpt . '"' : truncated_text(sanitize_text($activity->post->post_title))) : truncated_text(sanitize_text($activity->title));?></a></li>
+								<li class="recent-activity_title"><a href="<?php echo (in_array($activity->type, $recent->comment_types) || $activity->type == '') ? get_permalink($activity->post->ID) : get_permalink($activity->ID) ;?>"><?php echo (in_array($activity->type, $recent->comment_types) || $activity->type == '') ? (($is_reply) ? '"' . $parent_excerpt . '"' : truncated_text(sanitize_text($activity->post->post_title), $recent_trunc_chars)) : truncated_text(sanitize_text($activity->title), $recent_trunc_chars);?></a></li>
 								<?php if (in_array($activity->type, $recent->comment_types) || $activity->type == '') {echo $excerpt;} ?>
 								
 							</ul>
