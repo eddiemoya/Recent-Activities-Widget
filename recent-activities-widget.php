@@ -82,8 +82,11 @@ class Recent_Activities_Widget extends WP_Widget {
         extract($args);
         extract($instance);
         
-     	 // include (get_template_directory_url() . '/classes/communities_profile.php');
-       get_template_part('classes/communities_profile');
+        $path = ABSPATH . 'wp-content/themes/Eris/classes/communities_profile.php';
+        
+        
+    	include_once $path;
+       //get_template_part('classes/communities_profile');
        
        $category = (! empty($recent_act_cats)) ? $recent_act_cats : null;
         
