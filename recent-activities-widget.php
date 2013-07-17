@@ -81,9 +81,10 @@ class Recent_Activities_Widget extends WP_Widget {
     	
         extract($args);
         extract($instance);
+
 		
-        require_once get_template_directory() . '/classes/communities_profile.php';
-       
+       require_once get_template_directory() . '/classes/communities_profile.php';
+     	
        $category = (! empty($recent_act_cats)) ? $recent_act_cats : null;
         
        $recent = new User_Profile;
