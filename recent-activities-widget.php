@@ -91,9 +91,9 @@ class Recent_Activities_Widget extends WP_Widget {
         
        $activities = $recent->posts_per_page($recent_act_num)
        						->category($category)
-        					->get_all_activities()
+        					->get_all_activities_OLD()
         				    ->activities;
-        				    
+                				    
         include ('views/recent-activities.php');	
 
         $output = ob_get_clean();
